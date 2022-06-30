@@ -1,18 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
-    public function run()
+    public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+         \App\Models\Material::factory(30)->create();
+
+        $this->call(TypeSeeder::class);
+        $this->call(CategorySeeder::class);
+        $this->call(TagSeeder::class);
+
+        $this->call(RelationsSeeder::class);
     }
 }
