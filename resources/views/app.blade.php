@@ -23,10 +23,23 @@
             }
         </style>
     </head>
-    <body class="antialiased">
+    <body>
+    @section('menu')
+        @include('menu')
+    @show
+    <div class="container">
 
-        <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
+        @section('content')
+
+        @show
+
+        @section('footer')
+
+        @show
+    </div>
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
     </body>
 </html>
