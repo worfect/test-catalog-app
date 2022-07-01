@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+       <title> {{ env('APP_NAME') }} </title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -24,18 +24,21 @@
         </style>
     </head>
     <body>
-    @section('menu')
-        @include('menu')
-    @show
-    <div class="container">
+    <div class="main-wrapper">
+        <div class="content">
+            @section('menu')
+                @include('menu')
+            @show
+        <div class="container">
+            @section('content')
 
-        @section('content')
-
-        @show
-
+            @show
+        </div>
         @section('footer')
-
+            @include('footer')
         @show
+        </div>
+
     </div>
 
     <!-- Scripts -->

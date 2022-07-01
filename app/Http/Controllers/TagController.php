@@ -7,6 +7,6 @@ namespace App\Http\Controllers;
 class TagController extends Controller
 {
     public function show(){
-        return view('list')->with(['name' => 'tag']);
+        return view('list.tag')->with(['name' => 'tag']);
     }
 }
