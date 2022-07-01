@@ -123,3 +123,7 @@
     </div>
 
 @endsection
+
+@section('footer')
+    @parent
+@show

@@ -1,4 +1,4 @@
-@extends('create.create')
+@extends('edit.edit')
 
 @section('menu')
     @parent
@@ -7,7 +7,7 @@
 @section('content')
     @parent
 
-    <h1 class="my-md-5 my-4">Добавить тег</h1>
+    <h1 class="my-md-5 my-4">Добавить категорию</h1>
     <div class="row">
         <div class="col-lg-5 col-md-8">
             <form>
@@ -24,3 +24,7 @@
     </div>
 
 @endsection
+
+@section('footer')
+    @parent
+@show

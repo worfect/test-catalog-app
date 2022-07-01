@@ -29,16 +29,15 @@
             @section('menu')
                 @include('menu')
             @show
-        <div class="container">
-            @section('content')
+            <div class="container">
+                @section('content')
 
-            @show
+                @show
+            </div>
         </div>
         @section('footer')
             @include('footer')
         @show
-        </div>
-
     </div>
 
     <!-- Scripts -->

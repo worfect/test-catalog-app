@@ -1,4 +1,4 @@
-@extends('create.create')
+@extends('edit.edit')
 
 @section('menu')
     @parent
@@ -76,3 +76,7 @@
     </div>
 
 @endsection
+
+@section('footer')
+    @parent
+@show

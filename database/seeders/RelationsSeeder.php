@@ -17,7 +17,7 @@ class RelationsSeeder extends Seeder
                 'type_id' => random_int(1, 10),
             ]);
 
-            DB::table('material_category')->insert([
+            DB::table('category_material')->insert([
                 'material_id' => $i,
                 'category_id' => random_int(1, 10),
             ]);

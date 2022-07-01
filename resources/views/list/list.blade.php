@@ -7,3 +7,7 @@
 @section('content')
     @parent
 @endsection
+
+@section('footer')
+    @parent
+@show
