@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMaterialsTable extends Migration
+class CreateLinksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,16 @@ class CreateMaterialsTable extends Migration
      */
     public function up()
     {
-        Schema::create('materials', function (Blueprint $table) {
+        Schema::create('links', function (Blueprint $table) {
             $table->id();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
 
+            $table->string('url');
             $table->string('title');
-            $table->text('description');
-            $table->integer('category_id');
-            $table->integer('type_id');
+            $table->integer('material_id');
 
-            $table->foreign('type_id')->references('id')->on('types');
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('material_id')->references('id')->on('materials');
         });
     }
 
@@ -35,6 +33,6 @@ class CreateMaterialsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('materials');
+        Schema::dropIfExists('links');
     }
 }

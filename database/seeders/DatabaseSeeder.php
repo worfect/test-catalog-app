@@ -17,5 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RelationsSeeder::class);
 
         \App\Models\Material::factory(30)->create();
+        \App\Models\Link::factory(100)->create();
+        \App\Models\Author::factory(10)->create();
     }
 }
