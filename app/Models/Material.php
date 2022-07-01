@@ -6,24 +6,27 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Material extends Model
 {
     use HasFactory;
 
-    public function categories(): BelongsToMany
+    public $relations = ['tags'];
+
+    public function category(): BelongsTo
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsTo(Category::class);
     }
 
     public function tags(): BelongsToMany
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Tag::class);
     }
 
-    public function types(): BelongsToMany
+    public function type(): BelongsTo
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsTo(Type::class);
     }
 }

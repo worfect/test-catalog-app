@@ -10,12 +10,12 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-         \App\Models\Material::factory(30)->create();
-
         $this->call(TypeSeeder::class);
         $this->call(CategorySeeder::class);
         $this->call(TagSeeder::class);
 
         $this->call(RelationsSeeder::class);
+
+        \App\Models\Material::factory(30)->create();
     }
 }

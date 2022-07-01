@@ -12,8 +12,8 @@ class Category extends Model
 {
     use HasFactory;
 
-    public function materials(): BelongsToMany
+    public function materials()
     {
-        return $this->belongsToMany(Material::class);
+        return $this->hasMany(Material::class);
     }
 }
