@@ -22,7 +22,7 @@ class CreateLinksTable extends Migration
             $table->string('title')->nullable();
             $table->integer('material_id');
 
-            $table->foreign('material_id')->references('id')->on('materials');
+            $table->foreign('material_id')->references('id')->on('materials')->cascadeOnDelete();
         });
     }
 

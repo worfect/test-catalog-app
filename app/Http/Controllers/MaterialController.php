@@ -54,22 +54,16 @@ class MaterialController extends Controller
                                                    'categories' => $category->all()]);
     }
 
-    public function store(Material $material, Request $request)
+//    public function store(Material $material, Request $request)
+//    {
+//
+//    }
+
+    public function remove(Material $material, $id)
     {
-        dd($request);
+        $material->find($id)->delete();
+
+        return redirect()->back();
     }
 
-
-    public function addLink(Request $request)
-    {
-
-    }
-
-    public function removeLink(Link $link, Request $request)
-    {
-
-        $link->find($request->get('linkId'))->delete();
-
-        return redirect()->route('material.show', ['id' => $request->get('materialId')]);
-    }
 }
