@@ -19,7 +19,7 @@ class CreateLinksTable extends Migration
             $table->timestamp('updated_at')->useCurrent();
 
             $table->string('url');
-            $table->string('title');
+            $table->string('title')->nullable();
             $table->integer('material_id');
 
             $table->foreign('material_id')->references('id')->on('materials');

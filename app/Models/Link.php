@@ -10,6 +10,8 @@ class Link extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['material_id', 'title', 'url'];
+
     public function material(): BelongsTo
     {
         return $this->belongsTo(Material::class);

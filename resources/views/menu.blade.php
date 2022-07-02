@@ -9,15 +9,15 @@
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link @if( strpos(Route::currentRouteName(), 'material.') === 0 ) active @endif"
-                                                                    href="{{ route('material.show') }}">Материалы</a>
+                                                                    href="{{ route('material.index') }}">Материалы</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link @if( strpos(Route::currentRouteName(), 'tag.') === 0 ) active @endif"
-                                                                              href="{{ route('tag.show') }}">Теги</a>
+                                                                              href="{{ route('tag.index') }}">Теги</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link @if( strpos(Route::currentRouteName(), 'category.') === 0 ) active @endif"
-                                                                    href="{{ route('category.show') }}">Категории</a>
+                                                                    href="{{ route('category.index') }}">Категории</a>
                 </li>
             </ul>
         </div>
