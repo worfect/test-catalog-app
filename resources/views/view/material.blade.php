@@ -12,9 +12,7 @@
         <div class="col-lg-6 col-md-8">
             <div class="d-flex text-break">
                 <p class="col fw-bold mw-25 mw-sm-30 me-2">Авторы</p>
-                @foreach($material->authors as $author)
-                    {{ $author->name }}@if (!$loop->last), @endif
-                @endforeach
+                {{ $material->author }}
             </div>
             <div class="d-flex text-break">
                 <p class="col fw-bold mw-25 mw-sm-30 me-2">Тип</p>

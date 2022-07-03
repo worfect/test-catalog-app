@@ -19,7 +19,8 @@ class CreateMaterialsTable extends Migration
             $table->timestamp('updated_at')->useCurrent();
 
             $table->string('title');
-            $table->text('description');
+            $table->text('description')->nullable();
+            $table->text('author')->nullable();
             $table->foreignId('type_id')->constrained();
             $table->foreignId('category_id')->constrained();
         });

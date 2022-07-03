@@ -14,7 +14,9 @@ class Material extends Model
 {
     use HasFactory;
 
-    public $relations = ['tags', 'authors'];
+    public $relations = ['tags'];
+
+    protected $fillable = ['title', 'description', 'author', 'type_id', 'category_id'];
 
     public function category(): BelongsTo
     {
@@ -34,10 +36,5 @@ class Material extends Model
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class);
-    }
-
-    public function authors(): BelongsToMany
-    {
-        return $this->belongsToMany(Author::class);
     }
 }

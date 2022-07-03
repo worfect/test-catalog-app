@@ -14,6 +14,7 @@ class MaterialFactory extends Factory
             'description' => $this->faker->realText(100),
             'type_id' => rand(1,5),
             'category_id' => rand(1,9),
+            'author' => $this->faker->name(),
         ];
     }
 }

@@ -17,6 +17,8 @@ Route::prefix('material')->controller(MaterialController::class)->name('material
     Route::get('/', 'index')->name('index');
     Route::post('/', 'store')->name('store');
     Route::post('/remove/{id}', 'remove')->name('remove');
+    Route::post('/store', 'store')->name('store');
+    Route::post('/{id}/update', 'update')->name('update');
 });
 
 Route::prefix('tag')->controller(TagController::class)->name('tag.')->group(function () {

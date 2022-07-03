@@ -36,9 +36,7 @@
                 <tr>
                     <td><a href="{{ route('material.show', $material->id ) }}">{{ $material->title }}</a></td>
                     <td>
-                        @foreach($material->authors as $author)
-                            {{ $author->name }}@if (!$loop->last), @endif
-                        @endforeach
+                        {{ $material->author }}
                     </td>
                     <td>{{ $material->type->title }}</td>
                     <td>{{ $material->category->title }}</td>

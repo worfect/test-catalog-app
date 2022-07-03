@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreMaterialRequest;
+use App\Http\Requests\UpdateMaterialRequest;
 use App\Models\Category;
 use App\Models\Link;
 use App\Models\Material;
@@ -21,15 +23,13 @@ class MaterialController extends Controller
             return view('list.material')->with(['materials' => $material->all()]);
         }
 
-        $result = $material->where('title', 'LIKE', "%$searchQuery%")
-                            ->orWhereHas('authors', function($q) use ($searchQuery) {
-                                            $q->where('name', 'LIKE', "%$searchQuery%");
-                                        })
+        $result = $material->where('title', 'ILIKE', "%$searchQuery%")
+                            ->orWhere('author', 'ILIKE', "%$searchQuery%")
                             ->orWhereHas('category', function($q) use ($searchQuery) {
-                                $q->where('title', 'LIKE', "%$searchQuery%");
+                                $q->where('title', 'ILIKE', "%$searchQuery%");
                             })
                             ->orWhereHas('tags', function($q) use ($searchQuery) {
-                                $q->where('title', 'LIKE', "%$searchQuery%");
+                                $q->where('title', 'ILIKE', "%$searchQuery%");
                             })
                             ->get();
         return view('list.material')->with(['materials' => $result]);
@@ -54,16 +54,38 @@ class MaterialController extends Controller
                                                    'categories' => $category->all()]);
     }
 
-//    public function store(Material $material, Request $request)
-//    {
-//
-//    }
+    public function store(Material $material, StoreMaterialRequest $request)
+    {
+        $material->create([
+            'title' => $request->get('title'),
+            'description' => $request->get('description'),
+            'author' => $request->get('author'),
+            'type_id' => $request->get('typeId'),
+            'category_id' => $request->get('categoryId'),
+        ]);
+
+        return view('list.material')->with(['materials' => $material->all()]);
+    }
+
+    public function update(Material $material, UpdateMaterialRequest $request, $id)
+    {
+        $material->where('id', $id)
+            ->update([
+                'title' => $request->get('title'),
+                'description' => $request->get('description'),
+                'author' => $request->get('author'),
+                'type_id' => $request->get('typeId'),
+                'category_id' => $request->get('categoryId'),
+            ]);
+
+        return view('list.material')->with(['materials' => $material->all()]);
+    }
 
     public function remove(Material $material, $id)
     {
         $material->find($id)->delete();
 
-        return redirect()->back();
+        return view('list.material')->with(['materials' => $material->all()]);
     }
 
 }

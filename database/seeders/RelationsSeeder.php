@@ -16,10 +16,6 @@ class RelationsSeeder extends Seeder
                 'material_id' => $i,
                 'tag_id' => random_int(1, 10),
             ]);
-            DB::table('author_material')->insert([
-                'material_id' => random_int(1, 30),
-                'author_id' => random_int(1, 10),
-            ]);
         }
     }
 }
