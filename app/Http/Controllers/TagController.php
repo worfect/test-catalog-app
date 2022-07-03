@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Http\Requests\BindTagRequest;
+use App\Http\Requests\StoreTagRequest;
+use App\Http\Requests\UpdateTagRequest;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -24,6 +26,23 @@ class TagController extends Controller
     public function create()
     {
         return view('create.tag');
+    }
+
+    public function store(Tag $tag, StoreTagRequest $request)
+    {
+        $tag->create([
+            'title' => $request->get('title'),
+        ]);
+
+        return redirect()->route('tag.index');
+    }
+
+    public function update(Tag $tag, UpdateTagRequest $request, $id)
+    {
+        $tag->where('id', $id)
+            ->update(['title' => $request->get('title')]);
+
+        return redirect()->route('tag.index');
     }
 
     public function bind(BindTagRequest $request)

@@ -29,7 +29,7 @@ if(linkModal){
         }
         else{
             idInput.value = material;
-            form.action = host + '/link/create';
+            form.action = host + '/link/store';
         }
 
     })

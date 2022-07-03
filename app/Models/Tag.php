@@ -12,6 +12,8 @@ class Tag extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['title'];
+
     public function materials(): BelongsToMany
     {
         return $this->belongsToMany(Material::class);
