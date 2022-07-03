@@ -25,7 +25,7 @@ if(linkModal){
         let form = linkModal.querySelector('.modal-content form');
         if(id){
             idInput.value = id;
-            form.action = host + '/link/' + id + '/edit';
+            form.action = host + '/link/' + id + '/update';
         }
         else{
             idInput.value = material;

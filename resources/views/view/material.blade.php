@@ -95,9 +95,8 @@
                     </svg>
                             </a>
 
-                        <form action="{{ route('link.remove') }}" method="POST">
+                        <form action="{{ route('link.remove', $link->id) }}" method="POST">
                             @csrf
-                            <input type="hidden" name="linkId" value="{{ $link->id }}">
                             <a href="javascript:void(0)" class="text-decoration-none need-confirm-del" >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                      class="bi bi-trash" viewBox="0 0 16 16">

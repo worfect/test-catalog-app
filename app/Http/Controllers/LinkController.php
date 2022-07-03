@@ -21,7 +21,7 @@ class LinkController extends Controller
         return redirect()->back();
     }
 
-    public function edit(Link $link, linkRequest $request)
+    public function update(Link $link, linkRequest $request)
     {
         $link->where('id', $request->get('id'))
                         ->update(['title' => $request->get('title'), 'url' => $request->get('url')]);
@@ -29,9 +29,9 @@ class LinkController extends Controller
         return redirect()->back();
     }
 
-    public function remove(Link $link, Request $request)
+    public function remove(Link $link, $id)
     {
-        $link->find($request->get('linkId'))->delete();
+        $link->find($id)->delete();
 
         return redirect()->back();
     }

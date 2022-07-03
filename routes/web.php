@@ -20,15 +20,19 @@ Route::prefix('material')->controller(MaterialController::class)->name('material
 });
 
 Route::prefix('tag')->controller(TagController::class)->name('tag.')->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/create', 'create')->name('create');
+    Route::get('/{id}/edit/', 'edit')->name('edit');
     Route::post('/bind', 'bind')->name('bind');
     Route::post('/unbind', 'unbind')->name('unbind');
-    Route::get('/', 'index')->name('index');
+
+    Route::post('/remove/{id}', 'remove')->name('remove');
 });
 
 Route::prefix('link')->controller(LinkController::class)->name('link.')->group(function () {
     Route::post('/create', 'create')->name('create');
-    Route::post('/{id}/edit', 'edit')->name('edit');
-    Route::post('/remove', 'remove')->name('remove');
+    Route::post('/{id}/update', 'update')->name('update');
+    Route::post('/remove/{id}', 'remove')->name('remove');
 });
 
 Route::controller(CategoryController::class)->name('category.')->group(function () {

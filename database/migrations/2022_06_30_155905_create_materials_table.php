@@ -20,11 +20,7 @@ class CreateMaterialsTable extends Migration
 
             $table->string('title');
             $table->text('description');
-            $table->integer('category_id');
             $table->integer('type_id');
-
-            $table->foreign('type_id')->references('id')->on('types');
-            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 

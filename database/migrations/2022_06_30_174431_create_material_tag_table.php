@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategoryMaterialTable extends Migration
+class CreateMaterialTagTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateCategoryMaterialTable extends Migration
      */
     public function up()
     {
-        Schema::create('category_material', function (Blueprint $table) {
+        Schema::create('material_tag', function (Blueprint $table) {
             $table->id();
-            $table->integer('material_id');
-            $table->integer('category_id');
-            $table->unique(['material_id', 'category_id']);
+            $table->foreignId('material_id')->constrained()->onDelete('cascade');
+            $table->foreignId('tag_id')->constrained()->onDelete('cascade');
+            $table->unique(['material_id', 'tag_id']);
         });
     }
 
@@ -28,6 +28,6 @@ class CreateCategoryMaterialTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('category_material');
+        Schema::dropIfExists('material_tag');
     }
 }
