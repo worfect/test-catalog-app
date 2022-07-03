@@ -12,6 +12,8 @@ class Category extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['title'];
+
     public function materials()
     {
         return $this->hasMany(Material::class);

@@ -36,6 +36,11 @@ Route::prefix('link')->controller(LinkController::class)->name('link.')->group(f
     Route::post('/remove/{id}', 'remove')->name('remove');
 });
 
-Route::controller(CategoryController::class)->name('category.')->group(function () {
-    Route::get('/category', 'index')->name('index');
+Route::prefix('category')->controller(CategoryController::class)->name('category.')->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/create', 'create')->name('create');
+    Route::post('/{id}/update', 'update')->name('update');
+    Route::get('/{id}/edit', 'edit')->name('edit');
+    Route::post('/store', 'store')->name('store');
+    Route::post('/remove/{id}', 'remove')->name('remove');
 });
