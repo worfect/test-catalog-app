@@ -20,7 +20,8 @@ class CreateMaterialsTable extends Migration
 
             $table->string('title');
             $table->text('description');
-            $table->integer('type_id');
+            $table->foreignId('type_id')->constrained();
+            $table->foreignId('category_id')->constrained();
         });
     }
 
