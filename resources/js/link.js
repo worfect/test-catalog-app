@@ -2,12 +2,10 @@ import 'bootstrap';
 import $ from "jquery";
 window.$ = window.jQuery = $;
 
-const host = 'http://localhost:81'
 
 const linkModal = document.getElementById('linkModalToggle');
 if(linkModal){
     linkModal.addEventListener('show.bs.modal', function (event) {
-
         let button = event.relatedTarget;
 
         let id = button.getAttribute('data-bs-id');
@@ -25,11 +23,11 @@ if(linkModal){
         let form = linkModal.querySelector('.modal-content form');
         if(id){
             idInput.value = id;
-            form.action = host + '/link/' + id + '/update';
+            form.action = window.location.origin + '/link/' + id + '/update';
         }
         else{
             idInput.value = material;
-            form.action = host + '/link/store';
+            form.action = window.location.origin + '/link/store';
         }
 
     })
