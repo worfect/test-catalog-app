@@ -1,0 +1,30 @@
+version: "3.7"
+services:
+
+  webserver:
+    image: ${REGISTRY}/webserver:${IMAGE_TAG}
+    restart: always
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+      - /var/www/html:/var/www/html:ro
+    ports:
+      - "443:443"
+
+  fpm:
+    image: ${REGISTRY}/fpm:${IMAGE_TAG}
+
+  cli:
+    image: ${REGISTRY}/cli:${IMAGE_TAG}
+
+  postgres:
+    image: postgres:14.3-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE}
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+volumes:
+  postgres:
