@@ -2,7 +2,7 @@ version: "3.7"
 services:
     webserver:
         build:
-            context: ./docker/nginx
+            context: ./docker/development/nginx
         volumes:
             - ./:/var/www
         ports:
@@ -10,7 +10,7 @@ services:
 
     fpm:
         build:
-            context: ./docker
+            context: ./docker/development
             dockerfile: fpm/Dockerfile
         volumes:
             - ./:/var/www
@@ -19,7 +19,7 @@ services:
 
     cli:
         build:
-            context: ./docker
+            context: ./docker/development
             dockerfile: cli/Dockerfile
         volumes:
             - ./:/var/www
@@ -38,14 +38,14 @@ services:
 
     adminer:
         build:
-            context: ./docker
+            context: ./docker/development
             dockerfile: adminer/Dockerfile
         ports:
             - "8080:8080"
 
     node-cli:
         build:
-            context: ./docker/node
+            context: ./docker/development/node
         volumes:
             - ./:/var/www
 
