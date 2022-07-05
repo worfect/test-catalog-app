@@ -7,6 +7,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\Unique;
 
 final class BindTagRequest extends FormRequest
 {
@@ -21,9 +22,9 @@ final class BindTagRequest extends FormRequest
             'materialId' => 'required',
             'tagId'  =>  [
                 'required',
-                Rule::unique('material_tag', 'tag_id')->where(function ($query) use($request) {
-                    return $query->where('material_id', $request->get('materialId'))
-                                ->where('tag_id', $request->get('tagId'));
+                Rule::unique('material_tag', 'tag_id')->where(function (Unique $query) use($request): Unique {
+                    return $query->where('material_id', (string) $request->get('materialId'))
+                                ->where('tag_id', (string) $request->get('tagId'));
                 }),
             ],
         ];

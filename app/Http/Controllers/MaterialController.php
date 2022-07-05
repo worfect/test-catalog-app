@@ -26,10 +26,10 @@ class MaterialController extends Controller
 
         $result = $material->where('title', 'ILIKE', "%$searchQuery%")
                             ->orWhere('author', 'ILIKE', "%$searchQuery%")
-                            ->orWhereHas('category', function($query) use ($searchQuery) {
+                            ->orWhereHas('category', function(Material $query) use ($searchQuery) {
                                 $query->where('title', 'ILIKE', "%$searchQuery%");
                             })
-                            ->orWhereHas('tags', function($query) use ($searchQuery) {
+                            ->orWhereHas('tags', function(Material $query) use ($searchQuery) {
                                 $query->where('title', 'ILIKE', "%$searchQuery%");
                             })
                             ->get();
