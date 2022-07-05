@@ -19,6 +19,9 @@ cache-clear:
 m-r-s:
 	docker-compose run --rm cli php artisan migrate:refresh --seed
 
+psalm:
+	docker-compose run --rm cli ./vendor/bin/psalm
+
 watch:
 	docker-compose run --rm node-cli npm run watch
 

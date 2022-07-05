@@ -7,54 +7,55 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreMaterialRequest;
 use App\Http\Requests\UpdateMaterialRequest;
 use App\Models\Category;
-use App\Models\Link;
 use App\Models\Material;
 use App\Models\Tag;
 use App\Models\Type;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class MaterialController extends Controller
 {
-    public function index(Material $material, Request $request)
+    public function index(Material $material, Request $request): View
     {
-        $searchQuery = $request->get('search-query');
+        $searchQuery = (string) $request->get('search-query');
 
-        if(is_null($searchQuery)){
+        if($searchQuery === ''){
             return view('list.material')->with(['materials' => $material->all()]);
         }
 
         $result = $material->where('title', 'ILIKE', "%$searchQuery%")
                             ->orWhere('author', 'ILIKE', "%$searchQuery%")
-                            ->orWhereHas('category', function($q) use ($searchQuery) {
-                                $q->where('title', 'ILIKE', "%$searchQuery%");
+                            ->orWhereHas('category', function($query) use ($searchQuery) {
+                                $query->where('title', 'ILIKE', "%$searchQuery%");
                             })
-                            ->orWhereHas('tags', function($q) use ($searchQuery) {
-                                $q->where('title', 'ILIKE', "%$searchQuery%");
+                            ->orWhereHas('tags', function($query) use ($searchQuery) {
+                                $query->where('title', 'ILIKE', "%$searchQuery%");
                             })
                             ->get();
         return view('list.material')->with(['materials' => $result]);
     }
 
-    public function edit(Material $material, Type $type, Category $category, $id)
+    public function edit(Material $material, Type $type, Category $category, string $id): View
     {
         return view('edit.material')->with(['material' => $material->with($material->relations)->find($id),
                                                  'types' => $type->all(),
                                                  'categories' => $category->all()]);
     }
 
-    public function show(Material $material, Tag $tag, $id)
+    public function show(Material $material, Tag $tag, string $id): View
     {
         return view('view.material')->with(['material' => $material->with($material->relations)->find($id),
                                                  'tags' => $tag->all()]);
     }
 
-    public function create(Type $type, Category $category)
+    public function create(Type $type, Category $category): View
     {
         return view('create.material')->with(['types' => $type->all(),
                                                    'categories' => $category->all()]);
     }
 
-    public function store(Material $material, StoreMaterialRequest $request)
+    public function store(Material $material, StoreMaterialRequest $request): View
     {
         $material->create([
             'title' => $request->get('title'),
@@ -67,7 +68,7 @@ class MaterialController extends Controller
         return view('list.material')->with(['materials' => $material->all()]);
     }
 
-    public function update(Material $material, UpdateMaterialRequest $request, $id)
+    public function update(Material $material, UpdateMaterialRequest $request, string $id): View
     {
         $material->where('id', $id)
             ->update([
@@ -81,11 +82,11 @@ class MaterialController extends Controller
         return view('list.material')->with(['materials' => $material->all()]);
     }
 
-    public function remove(Material $material, $id)
+    public function remove(Material $material, string $id): RedirectResponse
     {
-        $material->find($id)->delete();
+        $material->findOrFail($id)->delete();
 
-        return view('list.material')->with(['materials' => $material->all()]);
+        return redirect()->back();
     }
 
 }

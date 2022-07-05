@@ -6,10 +6,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\linkRequest;
 use App\Models\Link;
+use Illuminate\Http\RedirectResponse;
 
 class LinkController extends Controller
 {
-    public function store(Link $link, linkRequest $request)
+    public function store(Link $link, linkRequest $request): RedirectResponse
     {
         $link->create([
             'material_id' => $request->get('id'),
@@ -20,7 +21,7 @@ class LinkController extends Controller
         return redirect()->back();
     }
 
-    public function update(Link $link, linkRequest $request, $id)
+    public function update(Link $link, linkRequest $request, string $id): RedirectResponse
     {
         $link->where('id', $id)
                         ->update(['title' => $request->get('title'), 'url' => $request->get('url')]);
@@ -28,9 +29,9 @@ class LinkController extends Controller
         return redirect()->back();
     }
 
-    public function remove(Link $link, $id)
+    public function remove(Link $link, string $id): RedirectResponse
     {
-        $link->find($id)->delete();
+        $link->findOrFail($id)->delete();
 
         return redirect()->back();
     }
