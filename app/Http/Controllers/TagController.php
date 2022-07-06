@@ -67,10 +67,8 @@ final class TagController extends Controller
         return redirect()->route('material.show', ['id' => $request->get('materialId')]);
     }
 
-    public function remove(Tag $tag, string $id): RedirectResponse
+    public function remove(Tag $tag, string $id): bool
     {
-        $tag->findOrFail($id)->delete();
-
-        return redirect()->back();
+        return $tag->findOrFail($id)->delete();
     }
 }

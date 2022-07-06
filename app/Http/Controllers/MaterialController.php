@@ -92,10 +92,8 @@ final class MaterialController extends Controller
         return view('material.list')->with(['materials' => $material->all()]);
     }
 
-    public function remove(Material $material, string $id): RedirectResponse
+    public function remove(Material $material, string $id): bool
     {
-        $material->findOrFail($id)->delete();
-
-        return redirect()->back();
+       return $material->findOrFail($id)->delete();
     }
 }

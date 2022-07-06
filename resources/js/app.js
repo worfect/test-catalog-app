@@ -3,6 +3,7 @@ import $ from "jquery";
 window.$ = window.jQuery = $;
 
 require('./link');
+require('./remove');
 
 $.ajaxSetup({
     headers: {
@@ -10,7 +11,7 @@ $.ajaxSetup({
     },
 });
 
-$(document).on("click", ".need-confirm-del", function (e) {
+$(document).on("click", ".unbind-tag", function (e) {
     if (confirm("Уверены?")){
         this.parentElement.submit()
     }

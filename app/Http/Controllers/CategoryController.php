@@ -44,14 +44,11 @@ final class CategoryController extends Controller
         return redirect()->route('category.index');
     }
 
-    public function remove(Category $category, string $id): never
+    public function remove(Category $category, string $id): bool
     {
 //        Что делать с обязательной привязкой к материалу?
 
-//        $category->find($id)->delete();
-//
-//        return redirect()->back();
-
+//        return $category->findOrFail($id)->delete();
         abort(404);
     }
 }
