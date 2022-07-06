@@ -13,14 +13,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Carbon;
 
 /**
- * App\Models\Tag
+ * App\Models\Tag.
  *
  * @property int $id
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property string $title
- * @property-read Collection|Material[] $materials
- * @property-read int|null $materials_count
+ * @property Collection|Material[] $materials
+ * @property int|null $materials_count
  * @method static Builder|Tag newModelQuery()
  * @method static Builder|Tag newQuery()
  * @method static Builder|Tag query()
@@ -30,7 +30,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Tag whereUpdatedAt($value)
  * @mixin Eloquent
  */
-class Tag extends Model
+final class Tag extends Model
 {
     use HasFactory;
 

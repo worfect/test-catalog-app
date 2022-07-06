@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
 
 /**
- * App\Models\Link
+ * App\Models\Link.
  *
  * @property int $id
  * @property Carbon $created_at
@@ -19,7 +19,7 @@ use Illuminate\Support\Carbon;
  * @property string $url
  * @property string|null $title
  * @property int $material_id
- * @property-read Material $material
+ * @property Material $material
  * @method static LinkFactory factory(...$parameters)
  * @method static Builder|Link newModelQuery()
  * @method static Builder|Link newQuery()
@@ -32,7 +32,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Link whereUrl($value)
  * @mixin Eloquent
  */
-class Link extends Model
+final class Link extends Model
 {
     use HasFactory;
 

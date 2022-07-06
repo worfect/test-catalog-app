@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
-class MaterialController extends Controller
+final class MaterialController extends Controller
 {
     public function index(Material $material, Request $request): View
     {
@@ -23,39 +23,46 @@ class MaterialController extends Controller
 
         $searchQuery = (string) $request->get('search-query');
 
-        if($searchQuery === ''){
+        if ($searchQuery === '') {
             return view('list.material')->with(['materials' => $material->all()]);
         }
 
-        $result = $material->where('title', 'ILIKE', "%$searchQuery%")
-                            ->orWhere('author', 'ILIKE', "%$searchQuery%")
-                            ->orWhereHas('category', function(Builder $query) use ($searchQuery) {
-                                $query->where('title', 'ILIKE', "%$searchQuery%");
-                            })
-                            ->orWhereHas('tags', function(Builder $query) use ($searchQuery) {
-                                $query->where('title', 'ILIKE', "%$searchQuery%");
-                            })
-                            ->get();
+        $result = $material
+            ->where('title', 'ILIKE', "%{$searchQuery}%")
+            ->orWhere('author', 'ILIKE', "%{$searchQuery}%")
+            ->orWhereHas('category', static function (Builder $query) use ($searchQuery) {
+                $query->where('title', 'ILIKE', "%{$searchQuery}%");
+            })
+            ->orWhereHas('tags', static function (Builder $query) use ($searchQuery) {
+                $query->where('title', 'ILIKE', "%{$searchQuery}%");
+            })
+            ->get();
         return view('list.material')->with(['materials' => $result]);
     }
 
     public function edit(Material $material, Type $type, Category $category, string $id): View
     {
-        return view('edit.material')->with(['material' => $material->with($material->relations)->find($id),
-                                                 'types' => $type->all(),
-                                                 'categories' => $category->all()]);
+        return view('edit.material')->with([
+            'material' => $material->with($material->relations)->find($id),
+            'types' => $type->all(),
+            'categories' => $category->all(),
+        ]);
     }
 
     public function show(Material $material, Tag $tag, string $id): View
     {
-        return view('view.material')->with(['material' => $material->with($material->relations)->find($id),
-                                                 'tags' => $tag->all()]);
+        return view('view.material')->with([
+            'material' => $material->with($material->relations)->find($id),
+            'tags' => $tag->all(),
+        ]);
     }
 
     public function create(Type $type, Category $category): View
     {
-        return view('create.material')->with(['types' => $type->all(),
-                                                   'categories' => $category->all()]);
+        return view('create.material')->with([
+            'types' => $type->all(),
+            'categories' => $category->all(),
+        ]);
     }
 
     public function store(Material $material, StoreMaterialRequest $request): View
@@ -91,5 +98,4 @@ class MaterialController extends Controller
 
         return redirect()->back();
     }
-
 }

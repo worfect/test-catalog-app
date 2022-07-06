@@ -6,7 +6,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-final class linkRequest extends FormRequest
+final class StoreLinkRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -23,8 +23,8 @@ final class linkRequest extends FormRequest
     public function messages(): array
     {
         return [
-            "url.url" =>  trans('validation.url'),
-            "url.required" => trans('validation.required'),
+            'url.url' => trans('validation.url'),
+            'url.required' => trans('validation.required'),
         ];
     }
 }

@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 
 /**
- * App\Models\Material
+ * App\Models\Material.
  *
  * @property int $id
  * @property Carbon $created_at
@@ -26,12 +26,12 @@ use Illuminate\Support\Carbon;
  * @property string|null $author
  * @property int $type_id
  * @property int $category_id
- * @property-read Category $category
- * @property-read Collection|Link[] $links
- * @property-read int|null $links_count
- * @property-read Collection|Tag[] $tags
- * @property-read int|null $tags_count
- * @property-read Type $type
+ * @property Category $category
+ * @property Collection|Link[] $links
+ * @property int|null $links_count
+ * @property Collection|Tag[] $tags
+ * @property int|null $tags_count
+ * @property Type $type
  * @method static MaterialFactory factory(...$parameters)
  * @method static Builder|Material newModelQuery()
  * @method static Builder|Material newQuery()
@@ -46,7 +46,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Material whereUpdatedAt($value)
  * @mixin Eloquent
  */
-class Material extends Model
+final class Material extends Model
 {
     use HasFactory;
 

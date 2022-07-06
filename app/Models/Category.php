@@ -13,14 +13,14 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 
 /**
- * App\Models\Category
+ * App\Models\Category.
  *
  * @property int $id
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property string $title
- * @property-read Collection|Material[] $materials
- * @property-read int|null $materials_count
+ * @property Collection|Material[] $materials
+ * @property int|null $materials_count
  * @method static Builder|Category newModelQuery()
  * @method static Builder|Category newQuery()
  * @method static Builder|Category query()
@@ -30,7 +30,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Category whereUpdatedAt($value)
  * @mixin Eloquent
  */
-class Category extends Model
+final class Category extends Model
 {
     use HasFactory;
 

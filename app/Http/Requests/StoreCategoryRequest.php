@@ -21,8 +21,8 @@ final class StoreCategoryRequest extends FormRequest
     public function messages(): array
     {
         return [
-            "title.required" => trans('validation.required'),
-            "title.unique" => trans('validation.unique'),
+            'title.required' => trans('validation.required'),
+            'title.unique' => trans('validation.unique'),
         ];
     }
 }
