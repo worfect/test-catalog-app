@@ -23,8 +23,8 @@ final class linkRequest extends FormRequest
     public function messages(): array
     {
         return [
-            "url.url" => 'Тут должна быть ссылка',
-            "url.required" => 'Поле обязательно для заполнения',
+            "url.url" =>  trans('validation.url'),
+            "url.required" => trans('validation.required'),
         ];
     }
 }

@@ -22,8 +22,8 @@ final class UpdateCategoryRequest extends FormRequest
     public function messages(): array
     {
         return [
-            "title.required" => 'Пожалуйста, заполните поле',
-            "title.unique" => 'Такая категория уже существует',
+            "title.required" => trans('validation.required'),
+            "title.unique" => trans('validation.unique'),
         ];
     }
 }

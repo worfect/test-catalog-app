@@ -18,14 +18,16 @@ final class StoreMaterialRequest extends FormRequest
         return [
             'typeId' => 'required',
             'categoryId' => 'required',
+            'title' => 'required',
         ];
     }
 
     public function messages(): array
     {
         return [
-            "typeId.required" => 'Пожалуйста, заполните поле',
-            "categoryId.required" => 'Пожалуйста, заполните поле',
+            "typeId.required" => trans('validation.required'),
+            "categoryId.required" => trans('validation.required'),
+            "title.required" => trans('validation.required'),
         ];
     }
 }

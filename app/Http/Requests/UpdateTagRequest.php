@@ -22,8 +22,8 @@ final class UpdateTagRequest extends FormRequest
     public function messages(): array
     {
         return [
-            "title.required" => 'Пожалуйста, заполните поле',
-            "title.unique" => 'Такой тег уже существует',
+            "title.required" => trans('validation.required'),
+            "title.unique" => trans('validation.unique'),
         ];
     }
 }
