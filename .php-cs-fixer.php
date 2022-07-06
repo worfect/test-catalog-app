@@ -8,8 +8,9 @@ return
         ->setFinder(
             PhpCsFixer\Finder::create()
                 ->in([
-                    __DIR__ . '/app',
-                    __DIR__ . '/config',
+                    __DIR__ . '/app/Http/Controllers',
+                    __DIR__ . '/app/Http/Requests',
+                    __DIR__ . '/app/Models',
                     __DIR__ . '/database',
                     __DIR__ . '/public',
                     __DIR__ . '/routes',
@@ -23,11 +24,11 @@ return
             '@PSR12:risky' => true,
             '@PhpCsFixer' => true,
             '@PhpCsFixer:risky' => true,
+            '@PHP81Migration' => true,
 
             'ordered_imports' => ['imports_order' => ['class', 'function', 'const']],
 
             'concat_space' => ['spacing' => 'one'],
-            'cast_spaces' => ['space' => 'none'],
 
             'phpdoc_to_comment' => false,
             'phpdoc_separation' => false,
@@ -46,7 +47,6 @@ return
             'yoda_style' => false,
 
             'final_class' => true,
-            'final_public_method_for_abstract_class' => true,
             'self_static_accessor' => true,
 
             'static_lambda' => true,

@@ -25,9 +25,9 @@ final class UpdateMaterialRequest extends FormRequest
     public function messages(): array
     {
         return [
-            "typeId.required" => trans('validation.required'),
-            "categoryId.required" => trans('validation.required'),
-            "title.required" => trans('validation.required'),
+            'typeId.required' => trans('validation.required'),
+            'categoryId.required' => trans('validation.required'),
+            'title.required' => trans('validation.required'),
         ];
     }
 }

@@ -20,12 +20,14 @@ final class BindTagRequest extends FormRequest
     {
         return [
             'materialId' => 'required',
-            'tagId'  =>  [
+            'tagId' => [
                 'required',
-                Rule::unique('material_tag', 'tag_id')->where(function (Builder $query) use($request): Builder {
-                    return $query->where('material_id', (string) $request->get('materialId'))
-                                ->where('tag_id', (string) $request->get('tagId'));
-                }),
+                Rule::unique('material_tag', 'tag_id')
+                    ->where(static function (Builder $query) use ($request): Builder {
+                        return $query
+                            ->where('material_id', (string) $request->get('materialId'))
+                            ->where('tag_id', (string) $request->get('tagId'));
+                    }),
             ],
         ];
     }
@@ -33,7 +35,7 @@ final class BindTagRequest extends FormRequest
     public function messages(): array
     {
         return [
-            "tagId.unique" => trans('validation.unique'),
+            'tagId.unique' => trans('validation.unique'),
         ];
     }
 }

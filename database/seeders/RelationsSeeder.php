@@ -7,11 +7,11 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class RelationsSeeder extends Seeder
+final class RelationsSeeder extends Seeder
 {
     public function run(): void
     {
-        for ($i = 30; $i > 0; $i--) {
+        for ($i = 30; $i > 0; --$i) {
             DB::table('material_tag')->insert([
                 'material_id' => $i,
                 'tag_id' => random_int(1, 10),

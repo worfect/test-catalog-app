@@ -10,7 +10,7 @@ use App\Models\Category;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 
-class CategoryController extends Controller
+final class CategoryController extends Controller
 {
     public function index(Category $category): View
     {
