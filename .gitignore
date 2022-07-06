@@ -10,3 +10,4 @@
 .env.backup
 .phpunit.result.cache
 /.idea
+_ide_helper.php

@@ -6,15 +6,16 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class CategorySeeder extends Seeder
 {
     public function run(): void
     {
+        $faker = \Faker\Factory::create();
+
         for ($i = 10; $i > 0; $i--) {
             DB::table('categories')->insert([
-                'title' => Str::random(random_int(3, 10))
+                'title' => $faker->word()
             ]);
         }
     }
