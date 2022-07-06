@@ -25,6 +25,12 @@ psalm:
 watch:
 	docker-compose run --rm node-cli npm run watch
 
+lint:
+	docker-compose run --rm cli composer php-cs-fixer fix -- --dry-run --diff
+
+fix:
+	docker-compose run --rm cli composer php-cs-fixer fix
+
 mix-prod:
 	docker-compose run --rm node-cli npm run production
 
