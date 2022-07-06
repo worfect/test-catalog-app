@@ -24,7 +24,7 @@ final class MaterialController extends Controller
         $searchQuery = (string) $request->get('search-query');
 
         if ($searchQuery === '') {
-            return view('list.material')->with(['materials' => $material->all()]);
+            return view('material.list')->with(['materials' => $material->all()]);
         }
 
         $result = $material
@@ -37,12 +37,12 @@ final class MaterialController extends Controller
                 $query->where('title', 'ILIKE', "%{$searchQuery}%");
             })
             ->get();
-        return view('list.material')->with(['materials' => $result]);
+        return view('material.list')->with(['materials' => $result]);
     }
 
     public function edit(Material $material, Type $type, Category $category, string $id): View
     {
-        return view('edit.material')->with([
+        return view('material.edit')->with([
             'material' => $material->with($material->relations)->find($id),
             'types' => $type->all(),
             'categories' => $category->all(),
@@ -51,7 +51,7 @@ final class MaterialController extends Controller
 
     public function show(Material $material, Tag $tag, string $id): View
     {
-        return view('view.material')->with([
+        return view('material.view')->with([
             'material' => $material->with($material->relations)->find($id),
             'tags' => $tag->all(),
         ]);
@@ -59,7 +59,7 @@ final class MaterialController extends Controller
 
     public function create(Type $type, Category $category): View
     {
-        return view('create.material')->with([
+        return view('material.create')->with([
             'types' => $type->all(),
             'categories' => $category->all(),
         ]);
@@ -75,7 +75,7 @@ final class MaterialController extends Controller
             'category_id' => $request->get('categoryId'),
         ]);
 
-        return view('list.material')->with(['materials' => $material->all()]);
+        return view('material.list')->with(['materials' => $material->all()]);
     }
 
     public function update(Material $material, UpdateMaterialRequest $request, string $id): View
@@ -89,7 +89,7 @@ final class MaterialController extends Controller
                 'category_id' => $request->get('categoryId'),
             ]);
 
-        return view('list.material')->with(['materials' => $material->all()]);
+        return view('material.list')->with(['materials' => $material->all()]);
     }
 
     public function remove(Material $material, string $id): RedirectResponse

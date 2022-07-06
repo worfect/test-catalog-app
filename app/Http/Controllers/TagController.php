@@ -17,17 +17,17 @@ final class TagController extends Controller
 {
     public function index(Tag $tag): View
     {
-        return view('list.tag')->with(['tags' => $tag->all()]);
+        return view('tag.list')->with(['tags' => $tag->all()]);
     }
 
     public function edit(Tag $tag, string $id): View
     {
-        return view('edit.tag')->with(['tag' => $tag->find($id)]);
+        return view('tag.edit')->with(['tag' => $tag->find($id)]);
     }
 
     public function create(): View
     {
-        return view('create.tag');
+        return view('tag.create');
     }
 
     public function store(Tag $tag, StoreTagRequest $request): RedirectResponse

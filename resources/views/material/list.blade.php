@@ -1,6 +1,6 @@
-@extends('list.list')
+@extends('material.index')
 
-@section('menu')
+@section('header')
     @parent
 @endsection
 

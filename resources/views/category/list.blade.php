@@ -1,6 +1,6 @@
-@extends('list.list')
+@extends('category.index')
 
-@section('menu')
+@section('header')
     @parent
 @endsection
 

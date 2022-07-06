@@ -14,17 +14,17 @@ final class CategoryController extends Controller
 {
     public function index(Category $category): View
     {
-        return view('list.category')->with(['categories' => $category->all()]);
+        return view('category.list')->with(['categories' => $category->all()]);
     }
 
     public function edit(Category $category, string $id): View
     {
-        return view('edit.category')->with(['category' => $category->find($id)]);
+        return view('category.edit')->with(['category' => $category->find($id)]);
     }
 
     public function create(): View
     {
-        return view('create.category');
+        return view('category.create');
     }
 
     public function store(Category $category, StoreCategoryRequest $request): RedirectResponse

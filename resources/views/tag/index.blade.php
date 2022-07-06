@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('menu')
+@section('header')
     @parent
 @endsection
 

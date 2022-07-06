@@ -1,6 +1,6 @@
-@extends('view.view')
+@extends('material.index')
 
-@section('menu')
+@section('header')
     @parent
 @endsection
 
@@ -76,7 +76,7 @@
             <div class="d-flex justify-content-between mb-3">
                 <h3>Ссылки</h3>
                 <a class="btn btn-primary" data-bs-toggle="modal" href="#linkModalToggle" role="button"
-                            data-bs-target="#linkModalToggle" data-bs-title="" data-bs-url="" data-bs-id="" data-bs-material="{{ $material->id }}">Добавить</a>
+                   data-bs-target="#linkModalToggle" data-bs-title="" data-bs-url="" data-bs-id="" data-bs-material="{{ $material->id }}">Добавить</a>
             </div>
             <ul class="list-group mb-4">
                 @foreach($material->links as $link)
@@ -112,23 +112,18 @@
         </div>
     </div>
 
-@endsection
 
-@section('footer')
-    @parent
-@show
-
-<div class="modal fade" id="linkModalToggle" aria-hidden="true" aria-labelledby="linkModalToggleLabel"
-     tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalToggleLabel">Добавить/редактировать ссылку</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form method="POST" action="">
-                @csrf
-                <div class="modal-body">
+    <div class="modal fade" id="linkModalToggle" aria-hidden="true" aria-labelledby="linkModalToggleLabel"
+         tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalToggleLabel">Добавить/редактировать ссылку</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="POST" action="">
+                    @csrf
+                    <div class="modal-body">
                         <input class="linkId" type="hidden" name="id" value="">
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control linkTitle" placeholder="Добавьте подпись"
@@ -146,12 +141,19 @@
                             @enderror
                         </div>
 
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Сохранить</button>
-                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Закрыть</button>
-                </div>
-            </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Сохранить</button>
+                        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Закрыть</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
+
+
+@endsection
+
+@section('footer')
+    @parent
+@show

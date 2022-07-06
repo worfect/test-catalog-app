@@ -28,7 +28,7 @@
     <body>
     <div class="main-wrapper">
         <div class="content">
-            @section('menu')
+            @section('header')
                 @include('menu')
             @show
             <div class="container">
