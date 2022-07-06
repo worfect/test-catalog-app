@@ -11,6 +11,7 @@ use App\Models\Material;
 use App\Models\Tag;
 use App\Models\Type;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -18,6 +19,8 @@ class MaterialController extends Controller
 {
     public function index(Material $material, Request $request): View
     {
+        $request->flash();
+
         $searchQuery = (string) $request->get('search-query');
 
         if($searchQuery === ''){
@@ -26,10 +29,10 @@ class MaterialController extends Controller
 
         $result = $material->where('title', 'ILIKE', "%$searchQuery%")
                             ->orWhere('author', 'ILIKE', "%$searchQuery%")
-                            ->orWhereHas('category', function(Material $query) use ($searchQuery) {
+                            ->orWhereHas('category', function(Builder $query) use ($searchQuery) {
                                 $query->where('title', 'ILIKE', "%$searchQuery%");
                             })
-                            ->orWhereHas('tags', function(Material $query) use ($searchQuery) {
+                            ->orWhereHas('tags', function(Builder $query) use ($searchQuery) {
                                 $query->where('title', 'ILIKE', "%$searchQuery%");
                             })
                             ->get();

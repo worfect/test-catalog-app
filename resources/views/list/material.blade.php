@@ -14,7 +14,7 @@
             <form method="GET" action="{{route('material.index')}}">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder=""
-                           aria-label="Example text with button addon" aria-describedby="button-addon1" name="search-query">
+                           aria-label="Example text with button addon" aria-describedby="button-addon1" name="search-query" value="{{ old('search-query') }}">
                     <button class="btn btn-primary" type="submit" id="button-addon1">Искать</button>
                 </div>
             </form>
