@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class CategoryController extends Controller
 {
@@ -44,11 +45,16 @@ final class CategoryController extends Controller
         return redirect()->route('category.index');
     }
 
-    public function remove(Category $category, string $id): bool
+    public function remove(Category $category, string $id): JsonResponse
     {
-//        Что делать с обязательной привязкой к материалу?
+        if ($category->find($id)->materials()->exists()) {
+            return response()->json([
+                'error' => true,
+                'message' => 'Невозможно удалить',
+            ], 403);
+        }
 
-//        return $category->findOrFail($id)->delete();
-        abort(404);
+        $category->find($id)->delete();
+        return response()->json();
     }
 }

@@ -16,8 +16,10 @@ $(document).on("click", ".remove-btn", function (e) {
             .done(function() {
                 location.reload();
             })
-            .fail(function() {
-
+            .fail(function(jqXHR, exception) {
+                if(exception ==='error'){
+                    alert(jqXHR.responseJSON.message);
+                }
             });
     }
 });

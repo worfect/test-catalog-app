@@ -12,7 +12,6 @@ use App\Models\Tag;
 use App\Models\Type;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 final class MaterialController extends Controller
@@ -94,6 +93,6 @@ final class MaterialController extends Controller
 
     public function remove(Material $material, string $id): bool
     {
-       return $material->findOrFail($id)->delete();
+        return $material->findOrFail($id)->delete();
     }
 }

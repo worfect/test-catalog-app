@@ -11,7 +11,7 @@ $.ajaxSetup({
     },
 });
 
-$(document).on("click", ".unbind-tag", function (e) {
+$(document).on("click", ".unbind-tag", function () {
     if (confirm("Уверены?")){
         this.parentElement.submit()
     }
