@@ -57,6 +57,7 @@ push-prod-cli:
 push-prod: push-prod-webserver push-prod-fpm push-prod-cli
 
 deploy:
+	ssh ${HOST} -p ${PORT} 'cd site && docker-compose down'
 	scp -P ${PORT} docker-compose-production.yml ${HOST}:site/docker-compose.yml
 	scp -P ${PORT} .env.prod ${HOST}:site/.env
 	ssh ${HOST} -p ${PORT} 'cd site && echo "REGISTRY=${REGISTRY}" >> .env'
@@ -67,3 +68,4 @@ deploy:
 	ssh ${HOST} -p ${PORT} 'cd site && docker-compose run --rm cli php artisan migrate:refresh --force'
 	ssh ${HOST} -p ${PORT} 'cd site && docker-compose run --rm cli php artisan db:seed --force'
 	ssh ${HOST} -p ${PORT} 'cd site && docker-compose up --build --remove-orphans -d'
+	ssh ${HOST} -p ${PORT} 'docker image prune -a --force'
