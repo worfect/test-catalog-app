@@ -9,7 +9,7 @@ final class CreateMaterialTagTable extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('material_tag', static function (Blueprint $table) {
             $table->id();
@@ -22,7 +22,7 @@ final class CreateMaterialTagTable extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('material_tag');
     }

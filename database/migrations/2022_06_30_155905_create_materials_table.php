@@ -9,7 +9,7 @@ final class CreateMaterialsTable extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('materials', static function (Blueprint $table) {
             $table->id();
@@ -27,7 +27,7 @@ final class CreateMaterialsTable extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('materials');
     }

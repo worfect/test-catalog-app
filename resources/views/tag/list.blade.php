@@ -1,8 +1,4 @@
-@extends('tag.index')
-
-@section('header')
-    @parent
-@endsection
+@extends('app')
 
 @section('content')
     @parent
@@ -43,8 +39,4 @@
         </div>
     </div>
 
-@endsection
-
-@section('footer')
-    @parent
 @endsection

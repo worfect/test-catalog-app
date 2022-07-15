@@ -9,7 +9,7 @@ final class CreateTypesTable extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('types', static function (Blueprint $table) {
             $table->id();
@@ -23,7 +23,7 @@ final class CreateTypesTable extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('types');
     }

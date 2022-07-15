@@ -1,8 +1,4 @@
-@extends('category.index')
-
-@section('header')
-    @parent
-@endsection
+@extends('app')
 
 @section('content')
     @parent
@@ -44,7 +40,3 @@
     </div>
 
 @endsection
-
-@section('footer')
-    @parent
-@show

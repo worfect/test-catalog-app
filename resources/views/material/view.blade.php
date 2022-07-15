@@ -1,8 +1,4 @@
-@extends('material.index')
-
-@section('header')
-    @parent
-@endsection
+@extends('app')
 
 @section('content')
     @parent
@@ -144,7 +140,3 @@
 
 
 @endsection
-
-@section('footer')
-    @parent
-@show

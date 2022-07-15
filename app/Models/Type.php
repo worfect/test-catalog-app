@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Eloquent;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -21,13 +20,6 @@ use Illuminate\Support\Carbon;
  * @property string $title
  * @property Collection|Material[] $materials
  * @property int|null $materials_count
- * @method static Builder|Type newModelQuery()
- * @method static Builder|Type newQuery()
- * @method static Builder|Type query()
- * @method static Builder|Type whereCreatedAt($value)
- * @method static Builder|Type whereId($value)
- * @method static Builder|Type whereTitle($value)
- * @method static Builder|Type whereUpdatedAt($value)
  * @mixin Eloquent
  */
 final class Type extends Model
