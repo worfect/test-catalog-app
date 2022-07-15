@@ -21,14 +21,13 @@ final class LinkController extends Controller
         return true;
     }
 
-    public function update(Link $link, UpdateLinkRequest $request, string $id): bool|int
+    public function update(Link $link, UpdateLinkRequest $request): bool|int
     {
-        return $link->where('id', $id)
-            ->update(['title' => $request->get('title'), 'url' => $request->get('url')]);
+        return $link->update(['title' => $request->get('title'), 'url' => $request->get('url')]);
     }
 
-    public function remove(Link $link, string $id): bool
+    public function remove(Link $link): bool|null
     {
-        return $link->findOrFail($id)->delete();
+        return $link->delete();
     }
 }

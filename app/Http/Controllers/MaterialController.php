@@ -12,6 +12,7 @@ use App\Models\Tag;
 use App\Models\Type;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 final class MaterialController extends Controller
@@ -39,19 +40,19 @@ final class MaterialController extends Controller
         return view('material.list')->with(['materials' => $result]);
     }
 
-    public function edit(Material $material, Type $type, Category $category, string $id): View
+    public function edit(Material $material, Type $type, Category $category): View
     {
         return view('material.edit')->with([
-            'material' => $material->with($material->relations)->find($id),
+            'material' => $material->load($material->relations),
             'types' => $type->all(),
             'categories' => $category->all(),
         ]);
     }
 
-    public function show(Material $material, Tag $tag, string $id): View
+    public function show(Material $material, Tag $tag): View
     {
         return view('material.view')->with([
-            'material' => $material->with($material->relations)->find($id),
+            'material' => $material->load($material->relations),
             'tags' => $tag->all(),
         ]);
     }
@@ -64,7 +65,7 @@ final class MaterialController extends Controller
         ]);
     }
 
-    public function store(Material $material, StoreMaterialRequest $request): View
+    public function store(Material $material, StoreMaterialRequest $request): RedirectResponse
     {
         $material->create([
             'title' => $request->get('title'),
@@ -74,25 +75,24 @@ final class MaterialController extends Controller
             'category_id' => $request->get('categoryId'),
         ]);
 
-        return view('material.list')->with(['materials' => $material->all()]);
+        return redirect()->route('material.index');
     }
 
-    public function update(Material $material, UpdateMaterialRequest $request, string $id): View
+    public function update(Material $material, UpdateMaterialRequest $request): RedirectResponse
     {
-        $material->where('id', $id)
-            ->update([
-                'title' => $request->get('title'),
-                'description' => $request->get('description'),
-                'author' => $request->get('author'),
-                'type_id' => $request->get('typeId'),
-                'category_id' => $request->get('categoryId'),
-            ]);
+        $material->update([
+            'title' => $request->get('title'),
+            'description' => $request->get('description'),
+            'author' => $request->get('author'),
+            'type_id' => $request->get('typeId'),
+            'category_id' => $request->get('categoryId'),
+        ]);
 
-        return view('material.list')->with(['materials' => $material->all()]);
+        return redirect()->route('material.index');
     }
 
-    public function remove(Material $material, string $id): bool
+    public function remove(Material $material): bool|null
     {
-        return $material->findOrFail($id)->delete();
+        return $material->delete();
     }
 }

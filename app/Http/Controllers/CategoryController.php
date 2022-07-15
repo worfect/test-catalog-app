@@ -18,9 +18,9 @@ final class CategoryController extends Controller
         return view('category.list')->with(['categories' => $category->all()]);
     }
 
-    public function edit(Category $category, string $id): View
+    public function edit(Category $category): View
     {
-        return view('category.edit')->with(['category' => $category->find($id)]);
+        return view('category.edit')->with(['category' => $category]);
     }
 
     public function create(): View
@@ -37,24 +37,23 @@ final class CategoryController extends Controller
         return redirect()->route('category.index');
     }
 
-    public function update(Category $category, UpdateCategoryRequest $request, string $id): RedirectResponse
+    public function update(Category $category, UpdateCategoryRequest $request): RedirectResponse
     {
-        $category->where('id', $id)
-            ->update(['title' => $request->get('title')]);
+        $category->update(['title' => $request->get('title')]);
 
         return redirect()->route('category.index');
     }
 
-    public function remove(Category $category, string $id): JsonResponse
+    public function remove(Category $category): JsonResponse
     {
-        if ($category->find($id)->materials()->exists()) {
+        if ($category->materials()->exists()) {
             return response()->json([
                 'error' => true,
                 'message' => 'Невозможно удалить',
             ], 403);
         }
 
-        $category->find($id)->delete();
+        $category->delete();
         return response()->json();
     }
 }

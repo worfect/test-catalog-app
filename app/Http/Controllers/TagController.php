@@ -20,9 +20,9 @@ final class TagController extends Controller
         return view('tag.list')->with(['tags' => $tag->all()]);
     }
 
-    public function edit(Tag $tag, string $id): View
+    public function edit(Tag $tag): View
     {
-        return view('tag.edit')->with(['tag' => $tag->find($id)]);
+        return view('tag.edit')->with(['tag' => $tag]);
     }
 
     public function create(): View
@@ -39,10 +39,9 @@ final class TagController extends Controller
         return redirect()->route('tag.index');
     }
 
-    public function update(Tag $tag, UpdateTagRequest $request, string $id): RedirectResponse
+    public function update(Tag $tag, UpdateTagRequest $request): RedirectResponse
     {
-        $tag->where('id', $id)
-            ->update(['title' => $request->get('title')]);
+        $tag->update(['title' => $request->get('title')]);
 
         return redirect()->route('tag.index');
     }
@@ -67,8 +66,8 @@ final class TagController extends Controller
         return redirect()->route('material.show', ['id' => $request->get('materialId')]);
     }
 
-    public function remove(Tag $tag, string $id): bool
+    public function remove(Tag $tag): bool|null
     {
-        return $tag->findOrFail($id)->delete();
+        return $tag->delete();
     }
 }
